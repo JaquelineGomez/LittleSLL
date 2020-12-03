@@ -3,89 +3,117 @@ public class LittleSLL
     //variables
     private Node head;
 
-    //constructor
+    //constructors
     public LittleSLL()
     {
-        head=null;
-    }
+        head = null;
+    }//end head constructor
 
-    //to populate list
     public void addNodeToStart(int addData)
     {
-        head =new Node(addData,head);
-    }
+        head = new Node(addData, head);
+    }//end addNode
 
     public void deleteNodeFromStart()
     {
-        if(head!=null)
+        if (head != null)
         {
-            head=head.getLink();
-        }
+            head = head.getLink();
+        }//end if head not null
         else
         {
-            System.out.println("Delete from an empty list?");
+            System.out.println("Deleting from an empty list");
             System.exit(0);
-        }
-    }
-
-    public boolean hasNext()
-    {
-        Node position=head;
-        if(position.getLink()!=null)
-        {
-            return true;
-        }
-        return  false;
-    }//end method hasNext
+        }//end else
+    }//end deleteNode
 
     public int length()
     {
-        int count=0;
-        Node position=head;
-        while(position!=null)
+        int count = 0;
+        Node position = head;
+        while (position  != null)
         {
             count++;
             position = position.getLink();
-        }
-        return count;
 
-    }
-    //to display list
+        }//end while
+
+        return count;
+    }//end length method
+
+    //hasNext
+    public boolean hasNext()
+    {
+        Node position = head;
+        if(position.getLink() != null)
+        {
+            return true;
+        }
+        return false;
+    }//end method hasNext
+
+    //setData
+    public void setData(int oldData, int updateData)
+    {
+        Node position = head;
+        while ( position != null)
+        {
+            if (position.getData() == oldData)
+            {
+                position.setData(updateData);
+            }//end if
+            position = position.getLink();
+        }//end while loop
+    }//end setData
+
     public void showList()
     {
-        Node position=head;
-        while(position !=null)
+        Node position =  head;
+        while (position != null)
         {
             System.out.println(position.getData());
-            position= position.getLink();
-        }
-    }
+            position = position.getLink();
+        }//end while loop
+
+    }//end method to output list
+
+
     private class Node
     {
-        //instance variable
+        //instance variables
         private int data;
-        private Node link;//instance of a self-refrencing class
-        //constructors
+        private Node link;
+
+        //constructor
         public Node(int data, Node link)
         {
-            this.data=data;
-            this.link=link;
-        }//end of constructor
+            this.data = data;
+            this.link = link;
+        }//end Node constructor
 
-        //getters & setters
 
-        public int getData() {
+        /*----------getters and setters----------*/
+        public int getData()
+        {
             return data;
-        }
+        }//end get data
 
-        public Node getLink() {
+        public Node getLink()
+        {
             return link;
-        }
+        }//end getLink
+
+        public void setData(int data)
+        {
+            this.data = data;
+        }//end setData
 
         //toString
-        @Override
-        public String toString() {
-            return "data: " + data + " link to:  "+ link ;
-        }
-    }
-}
+        public String toString()
+        {
+            return "data: " + data + " links to: " + link;
+        }//end toString
+
+    }// end class Node
+
+}//end public class
